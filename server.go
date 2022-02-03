@@ -12,7 +12,11 @@ type Person struct {
 }
 
 func main() {
-	app := fiber.New()
+	app := fiber.New(fiber.Config{
+		Prefork:      true,
+		ServerHeader: "Fiber",
+		AppName:      "Test App v1.0.1",
+	})
 	api.StartUserFlow(app)
 	app.Listen(":3000")
 }
